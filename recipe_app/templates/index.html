@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %} Welcome {% endblock %}
+{% block content %}
+<div class="container">
+    <form action="/register" method="POST">
+        <div class="mb-3">
+            <h1>First Timer?</h1>
+            <label class="form-label" for="first_name">First Name:</label>
+            <input class="form-control" type="text" name="first_name">
+            {% for message in get_flashed_messages(category_filter = ['first_name']) %}
+            <p class="alert alert-danger">{{message}}}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label for="last_name">Last Name:</label>
+            <input class="form-control" type="text" name="last_name">
+            {% for message in get_flashed_messages(category_filter = ['last_name']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control" type="email" name="email">
+            {% for message in get_flashed_messages(category_filter = ['email']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control" type="password" name="password">
+            {% for message in get_flashed_messages(category_filter = ['password']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Confirm Password:</label>
+            <input class="form-control" type="password" name="confirm_password">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Register">
+    </form>
+</div>
+<div class="container">
+    <h1>Back for Seconds?</h1>
+    <form action="/login" method="POST">
+        <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control" type="email" name="email">
+            {% for message in get_flashed_messages(category_filter = ['login']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control" type="password" name="password">
+            {% for message in get_flashed_messages(category_filter = ['login']) %}
+            <p class="alert alert-danger">{{message}}</p>
+            {% endfor %}
+        </div>
+        <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+</div>
+
+{% endblock %}

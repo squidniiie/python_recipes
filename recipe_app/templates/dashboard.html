@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1>Welcome {{one_chef.first_name}}!</h1>
+    <p>Check out all the Recipes</p>
+    <div class="links">
+        <a href="/new_recipe" value="create">Create</a>
+        <a href="/logout" value="logout">Logout</a>
+    </div>
+    <div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Under 30 Minutes?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one_recipe in all_recipes %}
+                <tr>
+                    <td>{{one_recipe.name}}</td>
+                    <td>{{ "yes" if one_recipe.under_30_minutes else "no"}}</td>
+                    <td><a href="/recipe/{{one_recipe.id}}">View Instructions</a>
+                        {% if one_recipe.chef_id== session['id'] %}
+                        <a href="/edit_recipe/{{one_recipe.id}}">Edit</a>
+                        <a href="/delete/recipe/{{one_recipe.id}}">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

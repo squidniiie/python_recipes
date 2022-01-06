@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} This Recipe {% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Welcome {{chef.first_name}}!</h1>
+    <h2>{{one_recipe.name}}</h2>
+    <div class="links">
+        <a class="btn btn-primary" href="/dashboard" value="dashboard">Dashboard</a>
+        <a class="btn btn-primary" href="/logout" value="logout">Logout</a>
+    </div>
+</div>
+<div class="card">
+    <h1>{{one_recipe.name}}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Under 30 minutes:</th>
+                <th>Instructions:</th>
+                <th>Date Made:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{one_recipe.description}}</td>
+                <td>{{one_recipe.under_30_minutes}}</td>
+                <td>{{one_recipe.instructions}}</td>
+                <td>{{one_recipe.date_made}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
